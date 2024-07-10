@@ -31,3 +31,28 @@ Route::get('detail/{id}', LandingController::class, 'detail')->name('detail.land
 Route::get('booking/{id}', LandingController::class, 'booking')->name('booking.landing');
 Route::get('detail_booking/{id}', LandingController::class, 'detail_booking')->name('detail. booking.landing');
 Route::resource('/', LandingController::class);
+
+
+Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sanctum', 'verified']],
+function(){
+
+
+    // Dashboard
+    Route::resource('dashboard', MemberController::class);
+
+    // Service
+    Route::resource('service', ServiceController::class);
+
+    // Request
+    Route::get('approve_request/{id}', RequestController::class, 'approve')->name('approve.request');
+    Route::resource('request', RequestController::class);
+
+    // MyOrder
+    Route::get('accept/order/{id}', MyOrderController::class, 'accepted')->name('accept.oreder');
+    Route::get('reject/order/{id}', MyOrderController::class, 'rejected')->name('reject.oreder');
+    Route::resource('order', MyOrderController::class);
+
+    // Profile
+    Route::get('delete_photo', ProfileController::class, 'delete')->name('delete.photo.profile');
+    Route::resource('profile', ProfileController::class);
+});
