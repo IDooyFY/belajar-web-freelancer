@@ -62,4 +62,16 @@ class MyOrderController extends Controller
     {
         //
     }
+
+
+
+    // Custom
+
+    public function accepetd($id){
+
+    }
+
+    public function rejected($id){
+
+    }
 }
