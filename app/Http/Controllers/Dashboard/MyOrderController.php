@@ -67,7 +67,7 @@ class MyOrderController extends Controller
 
     // Custom
 
-    public function accepetd($id){
+    public function accepted($id){
 
     }
 
