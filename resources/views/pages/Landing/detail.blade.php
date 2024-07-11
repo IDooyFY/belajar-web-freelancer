@@ -42,7 +42,7 @@
                         <img :class="{'border-4 border-serv-button': active === 1}"
                             @click="changeThumbnail('https://source.unsplash.com/_SgRNwAVNKw/1600x900/',1)"
                             src="{{ url('https://source.unsplash.com/_SgRNwAVNKw/250x160/') }}" alt=""
-                            class="inline-block mr-2 rounded-lg cursor-pointer w-36">
+                            class="inline-block mr-2 rounded-lg cursor-pointer w-36"> 
                         <img :class="{'border-4 border-serv-button': active === 2}"
                             @click="changeThumbnail('https://source.unsplash.com/GXNo-OJynTQ/1600x900/',2)"
                             src="{{ url('https://source.unsplash.com/GXNo-OJynTQ/250x160/') }}" alt=""
