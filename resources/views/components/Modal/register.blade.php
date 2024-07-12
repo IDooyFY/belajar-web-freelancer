@@ -16,6 +16,7 @@
             <form method="POST" action="{{ route('register') }}">
 
                 @csrf
+                
                 <!--body-->
                 <div class="relative p-6 flex-auto mx-10">
                     <div class="mb-4">
@@ -65,7 +66,7 @@
                             id="password_confirmation" type="password" placeholder="At least 8 characters" required>
 
                             @if ($errors->has('password_confirmation'))
-                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('password_confirmation ') }}</p>
+                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('password_confirmation') }}</p>
                             @endif
                     </div>
 
