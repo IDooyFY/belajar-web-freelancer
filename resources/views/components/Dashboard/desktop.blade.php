@@ -10,7 +10,7 @@
                 src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="random user" />
             <div>
                 <!--Author name-->
-                <p class="font-semibold text-gray-900 text-md">Alex Jones{{ Auth::user()->name }}</p>
+                <p class="font-semibold text-gray-900 text-md">{{ Auth::user()->name }}</p>
                 <p class="text-sm font-light text-serv-text">
                     Website Developer
                 </p>
@@ -106,9 +106,10 @@
                         <path d="M18.5 9.5L20.8586 11.8586C20.9367 11.9367 20.9367 12.0633 20.8586 12.1414L18.5 14.5" stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                         <path d="M9.5 12L20 12" stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                     </svg>
+
                     <span class="ml-4">Logout</span>
 
-                    <form action="{{ ('logout') }}" id="logout-form" method="POST" style="display: none;">
+                    <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none;">
                     
                         @csrf
                     

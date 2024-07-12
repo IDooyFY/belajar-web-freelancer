@@ -1,14 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 // front (Landing)
 use App\Http\Controllers\Landing\LandingController;
 
 
 
 // member ( Dashboard )
-use App\Http\Controllers\Dashboard\MemberController;
+use App\Http\Controllers\Dashboard\MemberController;    
 use App\Http\Controllers\Dashboard\MyOrderController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\RequestController;
@@ -39,6 +38,7 @@ function(){
 
     // Dashboard
     Route::resource('dashboard', MemberController::class);
+
 
     // Service
     Route::resource('service', ServiceController::class);

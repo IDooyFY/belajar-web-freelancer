@@ -25,33 +25,33 @@
                     <a href="#" class="block nav-link text-serv-text">Tips</a>
 
                     @auth
-                    <hr class="block lg:hidden">
-                    <a href="{{ route('member.dashboard.index') }}"
-                        class="block lg:hidden nav-link text-serv-text">Dashboard</a>
-                    <a href="{{ route('logout') }}" class="block lg:hidden nav-link text-serv-text"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout
+                        <hr class="block lg:hidden">
+                        <a href="{{ route('member.dashboard.index') }}"
+                            class="block lg:hidden nav-link text-serv-text">Dashboard</a>
+                        <a href="{{ route('logout') }}" class="block lg:hidden nav-link text-serv-text"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout
 
-                        <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none;">
-                            @csrf
-                        </form> 
-                    </a>
+                            <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none;">
+                                @csrf
+                            </form> 
+                        </a>
                     @endauth
 
                 </nav>
             </div>
 
             @guest
-            <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
-                <button onclick="toggleModal('loginModal')"
-                    class="text-serv-login-text items-center border-0 block lg:inline-block lg:py-3 lg:px-10 focus:outline-none rounded-2xl font-medium text-base mt-6 lg:mt-0">
-                    Log In
-                </button>
+                <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+                    <button onclick="toggleModal('loginModal')"
+                        class="text-serv-login-text items-center border-0 block lg:inline-block lg:py-3 lg:px-10 focus:outline-none rounded-2xl font-medium text-base mt-6 lg:mt-0">
+                        Log In
+                    </button>
 
-                <button onclick="toggleModal('registerModal')"
-                    class="lg:bg-serv-services-bg text-serv-login-text items-center border-0 block lg:inline-block  lg:py-3 lg:px-10 focus:outline-none rounded-2xl font-medium text-base mt-6 lg:mt-0">
-                    Sign Up
-                </button>
-            </div>
+                    <button onclick="toggleModal('registerModal')"
+                        class="lg:bg-serv-services-bg text-serv-login-text items-center border-0 block lg:inline-block  lg:py-3 lg:px-10 focus:outline-none rounded-2xl font-medium text-base mt-6 lg:mt-0">
+                        Sign Up
+                    </button>
+                </div>
             @endguest
 
             @auth
