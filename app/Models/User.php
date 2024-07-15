@@ -73,7 +73,7 @@ class User extends Authenticatable
     //one to one
     public function detail_user()
     {
-        return $this->hasOne('App\Models\DetailUser','user_id');
+        return $this->hasOne('App\Models\DetailUser','users_id');
     }
 
     //one to many
