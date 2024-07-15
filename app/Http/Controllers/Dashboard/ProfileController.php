@@ -3,10 +3,31 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+
+use App\Http\Requests\Dashboard\Profile\UpdateProfileRequest;
+use App\Http\Requests\Dashboard\Profile\UpdateDetailUserRequest;
+
+use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+use File; 
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\User;
+use App\Models\DetailUser;
+use App\Models\ExperienceUser;
+
 
 class ProfileController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -20,7 +41,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -28,7 +49,8 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort(404);
+
     }
 
     /**
@@ -36,7 +58,8 @@ class ProfileController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return abort(404);
+
     }
 
     /**
@@ -44,7 +67,8 @@ class ProfileController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return abort(404);
+
     }
 
     /**
@@ -60,7 +84,8 @@ class ProfileController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return abort(404);
+
     }
 
 
