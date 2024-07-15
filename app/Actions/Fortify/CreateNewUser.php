@@ -3,7 +3,7 @@
 namespace App\Actions\Fortify;
 
 
-use App\Model\DetailUser;
+use App\Models\DetailUser;
 use App\Models\DetailUser as ModelsDetailUser;
 use App\Models\Team;
 use App\Models\User;

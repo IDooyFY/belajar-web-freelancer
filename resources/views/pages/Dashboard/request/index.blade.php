@@ -68,7 +68,7 @@
                                         Approved
                                     </td>
                                     <td class="px-1 py-5 text-sm">
-                                        <a href="{{ route('member.request.detail', 1) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
+                                        <a href="{{ route('member.request.show', 1) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
                                             Details
                                         </a>
                                     </td>
@@ -107,7 +107,7 @@
                                         Approved
                                     </td>
                                     <td class="px-1 py-5 text-sm">
-                                        <a href="{{ route('member.request.detail', 1) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
+                                        <a href="{{ route('member.request.show', 1) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
                                             Details
                                         </a>
                                     </td>
@@ -115,7 +115,7 @@
                                 <tr class="text-gray-700">
                                 <td class="px-1 py-5 text-sm w-2/8">
                                         <div class="flex items-center text-sm">
-                                            <div class="relative w-10 h-10 mr-3 rounded-full md:block">
+                                            <div class="relative w- 10 h-10 mr-3 rounded-full md:block">
                                                 <img class="object-cover w-full h-full rounded-full" src="https://randomuser.me/api/portraits/men/12.jpg" alt="" loading="lazy" />
                                                 <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                             </div>
@@ -146,7 +146,7 @@
                                         Pending
                                     </td>
                                     <td class="px-1 py-5 text-sm">
-                                        <a href="{{ route('member.request.detail', 1) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
+                                        <a href="{{ route('member.request.show', 1) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
                                             Details
                                         </a>
                                     </td>
