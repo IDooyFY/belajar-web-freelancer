@@ -110,23 +110,84 @@ class ServiceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return abort(404);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Service $service)
     {
-        return view('pages.dashboard.service.edit');
+        $advantage_service = AdvantageService::where('service_id', $service['id'])->get();
+        $tagline = Tagline::where('service_id', $service['id'])->get();
+        $advantage_user = AdvantageUser::where('service_id', $service['id'])->get();
+        $thumbnail_service = ThumbnailService::where('service_id', $service['id'])->get();
+
+        return view('pages.dashboard.service.edit', compact('service', 'advantage_service', 'tagline', 'advantage_user', 'thumbnail_service') );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateServiceRequest $request, Service $service)
     {
-        //
+        $data = $request->all();
+
+        //update to service
+        $service->update($data);
+
+        // update to advantage service
+        foreach($data['advantage-service'] as $key => $value){
+            $advantage_service = AdvantageService::find($key);
+            $advantage_service->advantage = $value;
+            $advantage_service->save();
+        }
+
+        // add new advantage service
+        if(isset($data['advantage_service'])){
+            foreach($data['advantage-service'] as $key => $value){
+                $advantage_service = AdvantageService::find($key);
+                $advantage_service->service_id = $service['id'];
+                $advantage_service->advantage = $value;
+                $advantage_service->save();
+            }
+        }
+
+         // update to advantage user
+         foreach($data['advantage-user'] as $key => $value){
+             $advantage_user = AdvantageUser::find($key);
+             $advantage_user->advantage = $value;
+             $advantage_user->save();
+        }
+
+        // add new advantage user
+        if(isset($data['advantage_user'])){
+            foreach($data['advantage-user'] as $key => $value){
+                $advantage_user = AdvantageUser::find($key);
+                $advantage_user->service_id = $service['id'];
+                $advantage_user->advantage = $value;
+                $advantage_user->save();
+            }
+        }
+
+        // update to tagline
+        foreach($data['tagline'] as $key => $value){
+            $tagline = Tagline::find($key);
+            $tagline->tagline = $value;
+            $tagline->save();
+       }
+
+       // add new tagline
+       if(isset($data['tagline'])){
+           foreach($data['tagline'] as $key => $value){
+               $tagline = Tagline::find($key);
+               $tagline->service_id = $service['id'];
+               $tagline->tagline = $value;
+               $tagline->save();
+           }
+       }
+
+       //update to thumbnail service
     }
 
     /**
