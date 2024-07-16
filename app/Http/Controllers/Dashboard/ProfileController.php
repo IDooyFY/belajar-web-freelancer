@@ -126,7 +126,7 @@ class ProfileController extends Controller
             
         }else {
             foreach ($data_profile['experience'] as $key => $value) {
-                if(isset($vakue)){
+                if(isset($value)){
                     $experience_user = new ExperienceUser;
                     $experience_user->detail_user_id = $detail_user['id'];
                     $experience_user->experience = $value;
@@ -151,7 +151,6 @@ class ProfileController extends Controller
     }
 
 
-
     // Custom
 
     public function delete(){
@@ -161,7 +160,7 @@ class ProfileController extends Controller
 
         // second update value to null
         $data = DetailUser::find($get_user_photo['id']);
-        $data->photo = null;
+        $data->photo = NULL;
         $data->save();
 
         //delete file photo 

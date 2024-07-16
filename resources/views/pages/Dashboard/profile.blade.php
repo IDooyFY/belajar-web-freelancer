@@ -36,7 +36,7 @@
                                         <div class="flex items-center mt-1">
 
                                             @if (auth()->user()->detail_user()->first()->photo != NULL)
-                                                <img src="{{ url(storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="rounded-full">
+                                                <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="w-16 h-16 rounded-full">
                                                 
                                             @else
 
@@ -57,8 +57,8 @@
                                             <input type="file" accept="image/*" id="choose" name="photo" hidden>
 
                                             <a href="{{ route('member.delete.photo.profile') }}" type="button"
-                                                class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-red-700 bg-transparent rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" onclick="return
-                                                confirm('Are you sure want to delete your photo?')">
+                                                class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-red-700 bg-transparent rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" 
+                                                onclick="return confirm('Are you sure want to delete your photo?')">
                                                 Delete
                                             </a>
                                         </div>
@@ -166,18 +166,28 @@
                                                     @if ($errors->has('experience'))
                                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('experience') }}</p>
                                                     @endif
+
+                                                <input placeholder="More than 9 years of experience" type="text"
+                                                name="experience[]" id="experience" autocomplete="experience"
+                                                class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+
+                                                    @if ($errors->has('experience'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('experience') }}</p>
+                                                    @endif
                                             @endforelse
                                         
                                     </div>
                                 </div>
                             </div>
                             <div class="px-4 py-3 text-right sm:px-6">
-                                <button type="submit"
-                                    class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+                                <a href="{{ route('member.dashboard.index') }}" type="button"
+                                    class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+                                    onclick="return confirm('Are you sure want to cancel?, Any change you make will not be saved.')">
                                     Cancel
-                                </button>
+                                </a>
                                 <button type="submit"
-                                    class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                    class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                    onclick="return confirm('Are you sure want to submit this data ?')">
                                     Save Changes
                                 </button>
                             </div>

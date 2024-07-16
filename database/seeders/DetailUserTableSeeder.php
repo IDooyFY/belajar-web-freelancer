@@ -17,7 +17,7 @@ class DetailUserTableSeeder extends Seeder
             [
                 'users_id'            => 1,
                 'photo'               => '',
-                'role'                => 'Wensite Developer',
+                'role'                => 'Website Developer',
                 'contact_number'      => '',
                 'biography'           => '',
                 'created_at'          => date('Y-m-d h:i:s'),
