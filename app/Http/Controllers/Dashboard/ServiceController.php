@@ -188,6 +188,51 @@ class ServiceController extends Controller
        }
 
        //update to thumbnail service
+       if($request->hasfile('thumbnails')){
+        foreach ($request->file('thumbnails') as $key => $value)
+        {
+            // get old photo thumbnail
+            $get_photo = ThumbnailService::where('id', $key)->first() ;
+
+
+            // store photo
+            $path = $value->store(         // $file
+                'assets/service/thumbnail', 'public' 
+            );
+
+            // update thumbnail
+            $thumbnail_service = ThumbnailService::find($key);
+            $thumbnail_service->thumbnail = $path;
+            $thumbnail_service->save();
+
+            // delete old photo thumbnail
+            $data = 'storage/'.$get_photo['photo'];
+            if(File::Exists($data)){
+                File::delete($data);
+            }else {
+                File::delete('storage/app/public'.$get_photo['photo']);
+            }
+        }
+       }
+
+
+       // add to thumbnail service
+       if($request->hasfile('thumbnail')){
+            foreach($request->file('thumbnail') as $file){
+                $path = $file->store(
+                    'assets/service/thumbnail', 'public'
+                );
+
+                $thumbnail_service = new ThumbnailService;
+                $thumbnail_service->service_id = $service['id'];
+                $thumbnail_service->thumbnail = $path;
+                $thumbnail_service->save();
+            }
+       }
+
+
+       toast()->success('Update has been success');
+       return redirect()->route('member.service.index');
     }
 
     /**
@@ -195,6 +240,6 @@ class ServiceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return abort(404);
     }
 }
