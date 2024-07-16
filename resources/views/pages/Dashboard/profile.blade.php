@@ -21,7 +21,7 @@
         <div class="grid gap-5 md:grid-cols-12">
             <main class="col-span-12 p-4 md:pt-0">
                 <div class="px-2 py-2 mt-2 bg-white rounded-xl">
-                    
+
                     {{--  Auth::user->id() --}}
                     <form action="{{ route('member.profile.update', [Auth::user()->id]) }}"  
                         method="POST" enctype="multipart/form-data">    
@@ -54,7 +54,7 @@
                                                 Choose File
                                             </label>
 
-                                            <input type="file" accept="image/*" id="choose" name="photo">
+                                            <input type="file" accept="image/*" id="choose" name="photo" hidden>
 
                                             <a href="{{ route('member.delete.photo.profile') }}" type="button"
                                                 class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-red-700 bg-transparent rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" onclick="return
@@ -68,58 +68,106 @@
                                         @endif
 
                                     </div>
+
                                     <div class="md:col-span-6 lg:col-span-3">
-                                        <label for="service-name"
+                                        <label for="name"
                                             class="block mb-3 font-medium text-gray-700 text-md">Full Name</label>
-                                        <input placeholder="Alex Jones" type="text" name="service-name"
-                                            id="service-name" autocomplete="service-name"
-                                            class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                                        <input placeholder="Your name" type="text" name="name"
+                                            id="name" autocomplete="name"
+                                            class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ 
+                                            $user->name ?? '' }}" required>
+
+                                                @if ($errors->has('name'))
+                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('name') }}</p>
+                                                @endif
+
                                     </div>
+
                                     <div class="md:col-span-6 lg:col-span-3">
-                                        <label for="service-name"
+                                        <label for="role"
                                             class="block mb-3 font-medium text-gray-700 text-md">Role</label>
-                                        <input placeholder="Website Developer" type="text" name="service-name"
-                                            id="service-name" autocomplete="service-name"
-                                            class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                                        <input placeholder="Your role" type="text" name="role"
+                                            id="role" autocomplete="role"
+                                            class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ 
+                                            $user->detail_user->role ?? '' }}" required>
+
+                                                @if ($errors->has('role'))
+                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('role') }}</p>
+                                                @endif 
                                     </div>
+
                                     <div class="md:col-span-6 lg:col-span-3">
-                                        <label for="service-name"
+                                        <label for="email"
                                             class="block mb-3 font-medium text-gray-700 text-md">Email Address</label>
-                                        <input placeholder="Alex.jones@gmail.com" type="text" name="service-name"
-                                            id="service-name" autocomplete="service-name"
-                                            class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                                        <input placeholder="Your email" type="email" name="email"
+                                            id="email" autocomplete="email"
+                                            class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ 
+                                            $user->email ?? '' }}" required>
+
+                                                @if ($errors->has('email'))
+                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('email') }}</p>
+                                                @endif
                                     </div>
+
                                     <div class="md:col-span-6 lg:col-span-3">
-                                        <label for="service-name"
+                                        <label for="contact_number"
                                             class="block mb-3 font-medium text-gray-700 text-md">Contact Number</label>
-                                        <input placeholder="087721205555" type="number" name="service-name"
-                                            id="service-name" autocomplete="service-name"
-                                            class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                                        <input placeholder="Your contact number" type="number" name="contact_number"
+                                            id="contact_number" autocomplete="contact_number"
+                                            class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ 
+                                            $user->detail_user->contact_number ?? '' }}" required>
+
+                                                @if ($errors->has('contact_number'))
+                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('contact_number') }}</p>
+                                                @endif
                                     </div>
+
                                     <div class="col-span-6">
-                                        <label for="service-name"
+                                        <label for="biography"
                                             class="block mb-3 font-medium text-gray-700 text-md">Biografi</label>
                                         <textarea placeholder="Enter your biography here.." type="text"
-                                            name="service-name" id="service-name" autocomplete="service-name"
+                                            name="biography" id="biography" autocomplete="biography"
                                             class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                                            rows="4">I am a web developer and web designer. I have an Associate Degree in Software and Web Development, and I have much
-experience in programming languages, such as HTML5, CSS3, PHP, Javascript and PHP. I can use Bootstrap and WordPress.
-I will provide fast response and clear communication in several languages.  Feel free to contact me, thank you!</textarea>
+                                            rows="4">{{ $user->detail_user->biography ?? '' }}</textarea>
+
+                                            @if ($errors->has('biography'))
+                                            <p class="text-red-500 mb-3 text-sm">{{ $errors->first('biography') }}</p>
+                                            @endif
+
                                     </div>
+
                                     <div class="col-span-6">
-                                        <label for="service-name"
+                                        <label for="experience"
                                             class="block mb-3 font-medium text-gray-700 text-md">My Experience</label>
-                                        <input placeholder="More than 9 years of experience" type="text"
-                                            name="service-name" id="service-name" autocomplete="service-name"
-                                            class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
-                                        <input
-                                            placeholder="Knowledge in the fields of interface design, marketing and etc"
-                                            type="text" name="service-name" id="service-name"
-                                            autocomplete="service-name"
-                                            class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
-                                        <input placeholder="Lead Developer at Sony Music for 8 Years" type="text"
-                                            name="service-name" id="service-name" autocomplete="service-name"
-                                            class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+
+                                            @forelse ($experience_user as $key => $item)
+                                                <input placeholder="More than 9 years of experience" type="text"
+                                                name="{{ 'experience['.$item->id.']' }}" id="{{ 'experience['.$item->id.']' }}" autocomplete="{{ 'experience['.$item->id.']' }}"
+                                                class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ 
+                                                $item->experience }}">
+
+                                                    @if ($errors->has('experience['.$item->id.']'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('experience') }}</p>
+                                                    @endif
+
+                                            @empty
+                                                <input placeholder="More than 9 years of experience" type="text"
+                                                name="experience[]" id="experience" autocomplete="experience"
+                                                class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+
+                                                    @if ($errors->has('experience'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('experience') }}</p>
+                                                    @endif
+                                                    
+                                                <input placeholder="More than 9 years of experience" type="text"
+                                                name="experience[]" id="experience" autocomplete="experience"
+                                                class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+
+                                                    @if ($errors->has('experience'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('experience') }}</p>
+                                                    @endif
+                                            @endforelse
+                                        
                                     </div>
                                 </div>
                             </div>
