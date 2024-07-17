@@ -83,15 +83,15 @@
                                         <p class="block mb-3 text-sm text-gray-700">
                                             Hal apa aja yang didapakan dari service kamu?
                                         </p>
-                                        <input placeholder="Keunggulan 1" type="text" name="advantage-service[]"
+                                        <input placeholder="Keunggulan Service 1" type="text" name="advantage-service[]"
                                             id="advantage-service" autocomplete="advantage-service"
                                             
                                             class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('advantage-service[]') }}" required>
-                                        <input placeholder="Keunggulan 2" type="text" name="advantage-service[]"
+                                        <input placeholder="Keunggulan Service 2" type="text" name="advantage-service[]"
                                             id="advantage-service" autocomplete="advantage-service"
                                             
                                             class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('advantage-service[]') }}" required>
-                                        <input placeholder="Keunggulan 3" type="text" name="advantage-service[]"
+                                        <input placeholder="Keunggulan Service 3" type="text" name="advantage-service[]"
                                             id="advantage-service" autocomplete="advantage-service"
                                             
                                             class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('advantage-service[]') }}" required>
@@ -189,13 +189,13 @@
                                     <div class="col-span-6">
                                         <label for="advantage-user"
                                             class="block mb-3 font-medium text-gray-700 text-md">Keunggulan kamu</label>
-                                        <input placeholder="Keunggulan 1" type="text" name="advantage-user[]"
+                                        <input placeholder="Keunggulan Kamu 1" type="text" name="advantage-user[]"
                                             id="advantage-user" autocomplete="advantage-user"
                                             class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('advantage-user[]') }}" required>
-                                        <input placeholder="Keunggulan 2" type="text" name="advantage-user[]"
+                                        <input placeholder="Keunggulan Kamu 2" type="text" name="advantage-user[]"
                                             id="advantage-user" autocomplete="advantage-user"
                                             class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('advantage-user[]') }}" required>
-                                        <input placeholder="Keunggulan 3" type="text" name="advantage-user[]"
+                                        <input placeholder="Keunggulan Kamu 3" type="text" name="advantage-user[]"
                                             id="advantage-user" autocomplete="advantage-user"
                                             class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('advantage-user[]') }}" required>
                                         <div id="newAdvantagesRow"></div>
@@ -235,12 +235,14 @@
                                 </div>
                             </div>
                             <div class="px-4 py-3 text-right sm:px-6">
-                                <button type="submit"
-                                    class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+                                <a href="{{ route('member.service.index') }}" type="button"
+                                    class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300" onclick="return
+                                    confirm('Are you sure want to cancel?, Any change you make will not be saved.')">
                                     Cancel
-                                </button>
+                                </a>
                                 <button type="submit"
-                                    class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                    class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" onclick="return
+                                    confirm('Are you sure want to submit this data ?')">
                                     Create Service
                                 </button>
                             </div>
@@ -262,7 +264,7 @@
         // add row
             $("#addAdvantagesRow").click(function() {
                 var html = '';
-                html += '<input placeholder="Keunggulan" type="text" name="advantage-user[]" id="advantage-user" autocomplete="advantage-user" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
+                html += '<input placeholder="Keunggulan Kamu" type="text" name="advantage-user[]" id="advantage-user" autocomplete="advantage-user" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
 
                 $('#newAdvantagesRow').append(html);
             });
@@ -276,7 +278,7 @@
         // add row
             $("#addServicesRow").click(function() {
                 var html = '';
-                html += '<input placeholder="Keunggulan" type="text" name="advantage-service[]" id="advantage-service" autocomplete="advantage-service" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
+                html += '<input placeholder="Keunggulan Service" type="text" name="advantage-service[]" id="advantage-service" autocomplete="advantage-service" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
 
                 $('#newServicesRow').append(html);
             });
@@ -290,7 +292,7 @@
         // add row
             $("#addTaglineRow").click(function() {
                 var html = '';
-                html += '<input placeholder="Catatan" type="text" name="tagline[]" id="tagline" autocomplete="tagline" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
+                html += '<input placeholder="Tagline" type="text" name="tagline[]" id="tagline" autocomplete="tagline" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
 
                 $('#newTaglineRow').append(html);
             });
