@@ -35,7 +35,7 @@
                                     <div class="col-span-6">
                                         <div class="flex items-center mt-1">
 
-                                            @if (auth()->user()->detail_user()->first()->photo != NULL)
+                                            @if (auth()->user()->detail_user()->first()->photo != null)
                                                 <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="w-16 h-16 rounded-full">
                                                 
                                             @else
@@ -64,8 +64,8 @@
                                         </div>
 
                                         @if ($errors->has('photo'))
-                                            <p class="text-red-500 mb-3 text-sm">{{ $errors->first('photo') }}</p>
-                                        @endif
+                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('photo') }}</p>
+                                    @endif
 
                                     </div>
 

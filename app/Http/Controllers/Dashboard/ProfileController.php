@@ -160,7 +160,7 @@ class ProfileController extends Controller
 
         // second update value to null
         $data = DetailUser::find($get_user_photo['id']);
-        $data->photo = NULL;
+        $data->photo = null;
         $data->save();
 
         //delete file photo 
