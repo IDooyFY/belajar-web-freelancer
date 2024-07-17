@@ -79,7 +79,7 @@ class User extends Authenticatable
     //one to many
     public function service()
     {
-        return $this->hasMany('App\Models\Service','user_id');
+        return $this->hasMany('App\Models\Service','users_id');
     }
 
     public function order_buyer()
