@@ -66,7 +66,11 @@
                 </div>
                 <div class="flex overflow-x-scroll pb-10 hide-scroll-bar dragscroll -mx-3">
                     <div class="flex flex-nowrap">
-                        @include('components.landing.service')
+                        @forelse ($services as $item)
+                            @include('components.landing.service')
+                        @empty
+                            {{-- empty --}}
+                        @endforelse
                     </div>
 
                 </div>
@@ -90,7 +94,7 @@
                 <p class="text-lg leading-relaxed text-serv-text font-light mb-10 lg:mb-18">
                     Find thousands of skilled and experienced <br class="lg:block hidden">
                     remote workers to help you accomplishing <br class="lg:block hidden">
-                    your projects. 
+                    your projects.
                 </p>
                 <a
                     href="explore.php"
