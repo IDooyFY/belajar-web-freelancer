@@ -236,7 +236,6 @@
                     @guest
                         <a onclick="toggleModal('loginModal')" class="block px-12 py-4 my-2 text-lg font-semibold text-center text-white bg-serv-button rounded-xl">
                             Booking Now>
-
                         </a>
                     @endguest
                 </div>
