@@ -104,28 +104,28 @@ class LandingController extends Controller
         // validation booking
         if($service->users_id == $user_buyer){
             toast()->warning('Sorry, members cannot book their own service!');
-            return back(); 
+            return back();
         }
 
         $order = new Order;
         $order->buyer_id = $user_buyer;
-        $order->freelancer_id = $service->user->id;
+        $order->freelancer_id = $service->user->id ?? null;
         $order->service_id = $service->id;
         $order->file = NULL;
         $order->note = NULL;
         $order->expired = Date('y-m-d', strtotime('+3 Days'));
-        $order->order_status_id = 4; 
+        $order->order_status_id = 4;
         $order->save();
 
         $order_detail = Order::where('id', $order->id)->first();
 
-        return redirect()->route('detail_booking_landing', $order->id);
+        return redirect()->route('detail.booking.landing', $order->id);
     }
 
     public function detail_booking($id)
     {
         $order = Order::where('id', $id)->first();
-    
-        return view('pages.landing.booking', compact($order));
+
+        return view('pages.landing.booking', compact('order'));
     }
 }
