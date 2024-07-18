@@ -42,7 +42,7 @@
                     <div class="flex mt-2 flex-nowrap">
                         @forelse ($thumbnail as $item)
                             <img :class="{ 'border-4 border-serv-button': active === {{ $item->id }} }"
-                            @onclick="changeThumbnail('{{ url(Storage::url($item->thumbnail)) }}', {{ $item->id }})" src="{{ url(Storage::url($item->thumbnail)) }}" alt="thumbnail service" class="inline-block mr-2 rounded-lg cursor-pointer h-20 w-36 object-cover">
+                            @click="changeThumbnail('{{ url(Storage::url($item->thumbnail)) }}', {{ $item->id }})" src="{{ url(Storage::url($item->thumbnail)) }}" alt="thumbnail service" class="inline-block mr-2 rounded-lg cursor-pointer h-20 w-36 object-cover">
                         @empty
                             {{-- empty --}}
                         @endforelse
@@ -97,7 +97,7 @@
                             <div class="flex items-center col-span-12 p-2 lg:col-span-6">
                                 <div class="flex items-center space-x-4">
 
-                                    @if ($service->user->detail_user->photo != NULL)
+                                    @if ($item->user !== null && $item->user->detail_user !== null && $item->user->detail_user->photo !== null)
                                         <img class="w-20 h-20 object-cover rounded-full" src="{{ url(Storage::url($service->user->detail_user->photo)) }}" alt="photo profile" loading="lazy">
                                     @else
                                         <svg class="w-20 h-20 object-cover rounded-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
@@ -157,19 +157,26 @@
                 </div>
             </div>
         </main>
+
         <aside class="p-4 lg:col-span-4 md:col-span-12 md:pt-0">
             <div class="mb-4 border rounded-lg border-serv-testimonial-border">
                 <!--horizantil margin is just for display-->
                 <div class="flex items-start px-4 pt-6">
-                    <img class="object-cover w-16 h-16 mr-4 rounded-full"
-                        src="{{ url('https://images.unsplash.com/photo-1542156822-6924d1a71ace?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60') }}"
-                        alt="avatar">
+
+                    @if ($item->user !== null && $item->user->detail_user !== null && $item->user->detail_user->photo !== null)
+                        <img class="object-cover w-16 h-16 mr-4 rounded-full" src="{{ url(Storage::url($service->user->detail_user->photo)) }}" alt="photo profile" loading="lazy">
+                    @else
+                        <svg class="object-cover w-16 h-16 mr-4 rounded-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    @endif
+
                     <div class="w-full">
                         <div class="flex items-center justify-between">
-                            <h2 class="my-1 text-xl font-medium text-serv-bg">Farzhan Pill</h2>
+                            <h2 class="my-1 text-xl font-medium text-serv-bg">{{ $service->user->name ?? '' }}</h2>
                         </div>
                         <p class="text-md text-serv-text">
-                            Website Developer
+                            {{ $service->user->detail_user->role ?? '' }}
                         </p>
                     </div>
                 </div>
@@ -180,7 +187,7 @@
                             <circle cx="12" cy="12" r="8" stroke="#082431" stroke-width="1.5" />
                             <path d="M12 7V12L15 13.5" stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                         </svg>
-                        7 Days Delivery
+                        {{ $service->delivery_time ?? '' }} Days Delivery
                     </div>
                     <div class="flex-1 text-sm font-medium text-center">
                         <svg class="inline" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -195,7 +202,7 @@
                             <path d="M16 3L18.8586 5.85858C18.9367 5.93668 18.9367 6.06332 18.8586 6.14142L16 9"
                                 stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                         </svg>
-                        1 Revision Limit
+                        {{ $service->revision_limit ?? '' }} Revision Limit
                     </div>
                 </div>
                 <div class="px-4 pt-4 pb-2 features-list">
@@ -214,17 +221,24 @@
                                 Price starts from:
                             </td>
                             <td class="mb-4 text-xl font-semibold text-right text-serv-button">
-                                Rp120.000
+                               {{ 'Rp. '.number_format($service->price) ?? '' }}
                             </td>
                         </tr>
 
                     </table>
                 </div>
                 <div class="px-4 pb-4 booking">
-                    <a href="#"
-                        class="block px-12 py-4 my-2 text-lg font-semibold text-center text-white bg-serv-button rounded-xl">
-                        Booking Now
-                    </a>
+                    @auth
+                        <a href="{{ route('booking.landing', $service->id) }}" class="block px-12 py-4 my-2 text-lg font-semibold text-center text-white bg-serv-button rounded-xl">
+                            Booking Now
+                        </a>
+                    @endauth
+                    @guest
+                        <a onclick="toggleModal('loginModal')" class="block px-12 py-4 my-2 text-lg font-semibold text-center text-white bg-serv-button rounded-xl">
+                            Booking Now>
+
+                        </a>
+                    @endguest
                 </div>
             </div>
         </aside>
@@ -234,3 +248,18 @@
 </div>
 
 @endsection
+
+@push('after-script')
+    <script>
+        function gallery() {
+            return {
+                featured: 'https://img.freepik.com/free-photo/side-shot-code-editor-using-react-js_181624-61842.jpg?t=st=1721273703~exp=1721277303~hmac=cf4a46e4c9ab933b240aa6a4e2fcd1de01c156dce9f0849039cfd942232096d9&w=740',
+                active: 1,
+                changeThumbnail: function(url, position){
+                    this.featured = url;
+                    this.active = position;
+                }
+            }
+         }
+    </script>
+@endpush
