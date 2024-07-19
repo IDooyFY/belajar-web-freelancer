@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', ' My Service')
-    
+
 @section('content')
 
     @if (count($services))
@@ -48,8 +48,8 @@
                                                     <div class="relative w-10 h-10 mr-3 rounded-full md:block">
 
                                                         @if (isset($service->thumbnail_service[0]->thumbnail) != null)
-                                                            <img class="object-cover w-full h-full rounded" src="{{ url(Storage::url($service->thumbnail_service[0]->thumbnail)) }}" alt="thumbnail" loading="lazy" />    
-                                                        
+                                                            <img class="object-cover w-full h-full rounded" src="{{ url(Storage::url($service->thumbnail_service[0]->thumbnail)) }}" alt="thumbnail" loading="lazy" />
+
                                                         @else
                                                             <svg class="object-cover w-full h-full rounded text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                                                 <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -84,7 +84,7 @@
                                     @empty
 
                                     {{-- empty --}}
-                                        
+
                                     @endforelse
 
                                 </tbody>

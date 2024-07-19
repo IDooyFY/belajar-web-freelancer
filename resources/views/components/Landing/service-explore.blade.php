@@ -12,9 +12,9 @@
 
             <div>
                 <!--Author name-->
-                <p class="text-gray-900 font-semibold text-lg">{{ $item->user->name ?? '' }}</p>
+                <p class="text-gray-900 font-semibold text-lg">{{ $item->users->name ?? '' }}</p>
                 <p class="text-serv-text font-light text-md">
-                   {{ $item->user->detail_user->role ?? '' }}
+                   {{ $item->users->detail_user->role ?? '' }}
                 </p>
             </div>
         </div>

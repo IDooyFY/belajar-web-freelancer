@@ -173,10 +173,10 @@
 
                     <div class="w-full">
                         <div class="flex items-center justify-between">
-                            <h2 class="my-1 text-xl font-medium text-serv-bg">{{ $service->user->name ?? '' }}</h2>
+                            <h2 class="my-1 text-xl font-medium text-serv-bg">{{ $service->users->name ?? '' }}</h2>
                         </div>
                         <p class="text-md text-serv-text">
-                            {{ $service->user->detail_user->role ?? '' }}
+                            {{ $service->users->detail_user->role ?? '' }}
                         </p>
                     </div>
                 </div>

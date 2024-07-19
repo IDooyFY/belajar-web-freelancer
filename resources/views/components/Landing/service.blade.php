@@ -3,7 +3,7 @@
         <div class="flex items-center space-x-2 mb-6">
 
             @if ($item->user !== null && $item->user->detail_user !== null && $item->user->detail_user->photo !== null)
-                <img class="w-14 h-14 object-cover rounded-full mr-1" src="{{ url(Storage::url($item->user->detail_user->photo)) }}" alt="photo frelancer" loading="lazy">
+                <img class="w-14 h-14 object-cover rounded-full mr-1" src="{{ url(Storage::url($item->user->detail_user->photo)) }}" alt="photo free    lancer" loading="lazy">
             @else
                 <svg class="w-14 h-14 mr-3 object-cover object-center rounded-full mr-1 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -12,9 +12,9 @@
 
             <div>
                 <!--Author name-->
-                <p class="text-gray-900 font-semibold text-lg">{{ $item->user->name ?? '' }}</p>
+                <p class="text-gray-900 font-semibold text-lg">{{ $item->users->name ?? '' }}</p>
                 <p class="text-serv-text font-light text-md">
-                   {{ $item->user->detail_user->role ?? '' }}
+                   {{ $item->users->detail_user->role ?? '' }}
                 </p>
             </div>
         </div>

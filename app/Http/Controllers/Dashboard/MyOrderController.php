@@ -61,7 +61,7 @@ class MyOrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order) 
+    public function show(Order $order)
     {
         $service = Service::where('id', $order['service_id'])->first();
         $thumbnail = ThumbnailService::where('service_id', $order['service_id'])->get();
