@@ -7,7 +7,7 @@ use App\Http\Controllers\Landing\LandingController;
 
 
 // member ( Dashboard )
-use App\Http\Controllers\Dashboard\MemberController;    
+use App\Http\Controllers\Dashboard\MemberController;
 use App\Http\Controllers\Dashboard\MyOrderController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\RequestController;
@@ -29,7 +29,7 @@ Route::get('explore', [LandingController::class, 'explore'])->name('explore.land
 Route::get('detail/{id}', [LandingController::class, 'detail'])->name('detail.landing');
 Route::get('booking/{id}', [LandingController::class, 'booking'])->name('booking.landing');
 Route::get('detail_booking/{id}', [LandingController::class, 'detail_booking'])->name('detail.booking.landing');
-Route::resource('/', LandingController::class); 
+Route::resource('/', LandingController::class);
 
 
 Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sanctum', 'verified']],
@@ -48,8 +48,8 @@ function(){
     Route::resource('request', RequestController::class);
 
     // MyOrder
-    Route::get('accept/order/{id}', [MyOrderController::class, 'accepted'])->name('accept.oreder');
-    Route::get('reject/order/{id}', [MyOrderController::class, 'rejected'])->name('reject.oreder');
+    Route::get('accept/order/{id}', [MyOrderController::class, 'accepted'])->name('accept.order');
+    Route::get('reject/order/{id}', [MyOrderController::class, 'rejected'])->name('reject.order');
     Route::resource('order', MyOrderController::class);
 
     // Profile
